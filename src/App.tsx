@@ -19,11 +19,23 @@ function App() {
     setItems((items) => [...items, item])
     console.log(items)
   }
+
+  function handleDeleteItem(id: number) {
+    setItems((items) => items.filter((item) => item.id !== id))
+  }
+
+  function handleClearList() {
+    setItems([])
+  }
   return (
     <>
       <h3>TODO list</h3>
       <Form onAddItems={handleAddItems} />
-      <List items={items} />
+      <List
+        items={items}
+        onClearList={handleClearList}
+        onDeleteItem={handleDeleteItem}
+      />
     </>
   )
 }
