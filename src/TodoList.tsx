@@ -1,4 +1,5 @@
 import Item from './Item'
+import Button from '@mui/material/Button'
 
 interface Delete {
   (id: number): void
@@ -31,7 +32,9 @@ export default function List({
           />
         ))}
       </ul>
-      <button onClick={onClearList}>Clear list</button>
+      <Button onClick={onClearList} variant='contained'>
+        Clear list
+      </Button>
     </div>
   )
 }

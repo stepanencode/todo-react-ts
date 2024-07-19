@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '@mui/material/Button'
 
 interface AddItem {
   (newItem: { text: string; isChecked: boolean; id: number }): void
@@ -6,6 +7,8 @@ interface AddItem {
 
 export default function Form({ onAddItems }: { onAddItems: AddItem }) {
   const [text, setText] = useState<string>('')
+
+  const newItem = { text, isChecked: false, id: Date.now() }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setText(e.target.value)
@@ -15,11 +18,15 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
     e.preventDefault()
     if (!text) return
 
-    const newItem = { text, isChecked: false, id: Date.now() }
-
     onAddItems(newItem)
     setText('')
     console.log(newItem)
+  }
+
+  function handleClick() {
+    if (!text) return
+    onAddItems(newItem)
+    setText('')
   }
 
   return (
@@ -30,7 +37,9 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
         value={text}
         onChange={handleChange}
       />
-      <button>Add</button>
+      <Button onClick={handleClick} variant='contained'>
+        Add
+      </Button>
     </form>
   )
 }

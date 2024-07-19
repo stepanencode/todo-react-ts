@@ -1,6 +1,6 @@
 import Form from './Form'
 import { useState } from 'react'
-import List from './List'
+import TodoList from './TodoList'
 
 interface Item {
   text: string
@@ -37,9 +37,9 @@ function App() {
   }
   return (
     <>
-      <h3>TODO list</h3>
+      <div>TODO list</div>
       <Form onAddItems={handleAddItems} />
-      <List
+      <TodoList
         items={items}
         onClearList={handleClearList}
         onDeleteItem={handleDeleteItem}
