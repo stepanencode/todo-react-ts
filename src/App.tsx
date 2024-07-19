@@ -24,6 +24,14 @@ function App() {
     setItems((items) => items.filter((item) => item.id !== id))
   }
 
+  function handleToggleItem(id: number) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, isChecked: !item.isChecked } : item
+      )
+    )
+  }
+
   function handleClearList() {
     setItems([])
   }
@@ -35,6 +43,7 @@ function App() {
         items={items}
         onClearList={handleClearList}
         onDeleteItem={handleDeleteItem}
+        onToggleItem={handleToggleItem}
       />
     </>
   )
