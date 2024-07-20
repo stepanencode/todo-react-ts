@@ -1,4 +1,6 @@
 import ListItem from '@mui/material/ListItem'
+import ClearIcon from '@mui/icons-material/Clear'
+import { Checkbox, Typography } from '@mui/material'
 
 interface Delete {
   (id: number): void
@@ -25,13 +27,24 @@ export default function Item({
 
   return (
     <ListItem>
-      <input
+      <Checkbox
+        onChange={() => onToggleItem(item.id)}
+        inputProps={{ 'aria-label': 'controlled' }}
+        value={convertItem}
+      />
+      {/* input checkbox doesn't connect with state with mui  */}
+      {/* <input
         type='checkbox'
         value={convertItem}
         onChange={() => onToggleItem(item.id)}
-      />
-      {item.text}
-      <button onClick={() => onDeleteItem(item.id)}>❌</button>
+      /> */}
+      <Typography
+        component='p'
+        sx={{ color: '#1976d2', maxWidth: '300px', wordBreak: 'break-all' }}
+      >
+        {item.text}
+      </Typography>
+      <ClearIcon onClick={() => onDeleteItem(item.id)} sx={{ color: 'red' }} />
     </ListItem>
   )
 }

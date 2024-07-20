@@ -1,7 +1,10 @@
 import Form from './Form'
 import { useState } from 'react'
 import TodoList from './TodoList'
-import { Box } from '@mui/material'
+// import { Box } from '@mui/material'
+import Paper from '@mui/material/Paper'
+import Container from '@mui/material/Container'
+import { Grid, Typography } from '@mui/material'
 
 interface Item {
   text: string
@@ -37,22 +40,40 @@ function App() {
     setItems([])
   }
   return (
-    <Box
-      sx={{
-        width: 500,
-        minHeight: 300,
-        margin: '0 auto',
-      }}
-    >
-      <div>TODO list</div>
-      <Form onAddItems={handleAddItems} />
-      <TodoList
-        items={items}
-        onClearList={handleClearList}
-        onDeleteItem={handleDeleteItem}
-        onToggleItem={handleToggleItem}
-      />
-    </Box>
+    <Container maxWidth='sm'>
+      <Paper
+        elevation={12}
+        sx={{
+          width: '450px',
+          height: '450px',
+          padding: '25px',
+          margin: '50px',
+          bgcolor: '#e0f2fb',
+        }}
+      >
+        <Grid
+          container
+          spacing={0}
+          direction='column'
+          alignItems='center'
+          justifyContent='center'
+          sx={{ marginBottom: '25px' }}
+        >
+          <Grid item>
+            <Typography variant='h2' sx={{ color: '#1976d2' }}>
+              TODO LIST
+            </Typography>
+          </Grid>
+        </Grid>
+        <Form onAddItems={handleAddItems} />
+        <TodoList
+          items={items}
+          onClearList={handleClearList}
+          onDeleteItem={handleDeleteItem}
+          onToggleItem={handleToggleItem}
+        />
+      </Paper>
+    </Container>
   )
 }
 

@@ -3,6 +3,7 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import AddIcon from '@mui/icons-material/Add'
+import { Grid } from '@mui/material'
 
 interface AddItem {
   (newItem: { text: string; isChecked: boolean; id: number }): void
@@ -34,19 +35,32 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
 
   return (
     <Box onSubmit={handleSubmit} component='form' noValidate autoComplete='off'>
-      <TextField
-        id='outlined-basic'
-        label='new todo item'
-        variant='outlined'
-        type='text'
-        size='small'
-        placeholder='new todo item'
-        value={text}
-        onChange={handleChange}
-      />
-      <Button onClick={handleClick} variant='contained'>
-        <AddIcon />
-      </Button>
+      <Grid
+        container
+        spacing={2}
+        alignItems='center'
+        direction='row'
+        justifyContent='center'
+      >
+        <Grid item xs={8}>
+          <TextField
+            id='outlined-basic'
+            label='new todo item'
+            variant='outlined'
+            type='text'
+            size='small'
+            fullWidth
+            placeholder='new todo item'
+            value={text}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <Button onClick={handleClick} variant='contained'>
+            <AddIcon />
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   )
 }
