@@ -1,3 +1,5 @@
+import ListItem from '@mui/material/ListItem'
+
 interface Delete {
   (id: number): void
 }
@@ -22,7 +24,7 @@ export default function Item({
   let convertItem = stringToBoolean(item.isChecked)
 
   return (
-    <li>
+    <ListItem>
       <input
         type='checkbox'
         value={convertItem}
@@ -30,6 +32,6 @@ export default function Item({
       />
       {item.text}
       <button onClick={() => onDeleteItem(item.id)}>❌</button>
-    </li>
+    </ListItem>
   )
 }

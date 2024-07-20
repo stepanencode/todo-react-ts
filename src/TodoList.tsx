@@ -1,5 +1,7 @@
 import Item from './Item'
 import Button from '@mui/material/Button'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import List from '@mui/material/List'
 
 interface Delete {
   (id: number): void
@@ -9,7 +11,7 @@ interface IsChecked {
   (id: number): void
 }
 
-export default function List({
+export default function TodoList({
   items,
   onClearList,
   onDeleteItem,
@@ -22,7 +24,7 @@ export default function List({
 }) {
   return (
     <div>
-      <ul>
+      <List>
         {items.map((item: { text: string; isChecked: boolean; id: number }) => (
           <Item
             item={item}
@@ -31,9 +33,10 @@ export default function List({
             onToggleItem={onToggleItem}
           />
         ))}
-      </ul>
+      </List>
       <Button onClick={onClearList} variant='contained'>
         Clear list
+        <DeleteOutlineIcon />
       </Button>
     </div>
   )

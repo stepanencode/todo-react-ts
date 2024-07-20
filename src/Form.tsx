@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
+import AddIcon from '@mui/icons-material/Add'
 
 interface AddItem {
   (newItem: { text: string; isChecked: boolean; id: number }): void
@@ -30,16 +33,20 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Box onSubmit={handleSubmit} component='form' noValidate autoComplete='off'>
+      <TextField
+        id='outlined-basic'
+        label='new todo item'
+        variant='outlined'
         type='text'
-        placeholder='Item...'
+        size='small'
+        placeholder='new todo item'
         value={text}
         onChange={handleChange}
       />
       <Button onClick={handleClick} variant='contained'>
-        Add
+        <AddIcon />
       </Button>
-    </form>
+    </Box>
   )
 }
