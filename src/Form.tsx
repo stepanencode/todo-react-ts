@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import AddIcon from '@mui/icons-material/Add'
 import { Grid } from '@mui/material'
@@ -34,15 +33,19 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
   }
 
   return (
-    <Box onSubmit={handleSubmit} component='form' noValidate autoComplete='off'>
+    <>
       <Grid
         container
-        spacing={2}
+        // spacing={2}
         alignItems='center'
         direction='row'
-        justifyContent='center'
+        justifyContent='space-between'
+        onSubmit={handleSubmit}
+        component='form'
+        noValidate
+        autoComplete='off'
       >
-        <Grid item xs={8}>
+        <Grid item>
           <TextField
             id='outlined-basic'
             label='new todo item'
@@ -53,14 +56,15 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
             placeholder='new todo item'
             value={text}
             onChange={handleChange}
+            sx={{ width: '300px' }}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item>
           <Button onClick={handleClick} variant='contained'>
             <AddIcon />
           </Button>
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }

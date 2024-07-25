@@ -1,19 +1,17 @@
 import Form from './Form'
 import { useState } from 'react'
 import TodoList from './TodoList'
-// import { Box } from '@mui/material'
 import Paper from '@mui/material/Paper'
-import Container from '@mui/material/Container'
 import { Grid, Typography } from '@mui/material'
 
-interface Item {
+interface TodoItem {
   text: string
   isChecked: boolean
   id: number
 }
 
 function App() {
-  const [items, setItems] = useState<Item[]>([])
+  const [items, setItems] = useState<TodoItem[]>([])
 
   function handleAddItems(item: {
     text: string
@@ -40,14 +38,15 @@ function App() {
     setItems([])
   }
   return (
-    <Container maxWidth='sm'>
+    <>
       <Paper
         elevation={12}
         sx={{
-          width: '450px',
-          height: '450px',
+          width: '500px',
+          minHeight: '450px',
           padding: '25px',
-          margin: '50px',
+          margin: '0 auto',
+          marginTop: '50px',
           bgcolor: '#e0f2fb',
         }}
       >
@@ -56,7 +55,6 @@ function App() {
           spacing={0}
           direction='column'
           alignItems='center'
-          justifyContent='center'
           sx={{ marginBottom: '25px' }}
         >
           <Grid item>
@@ -65,15 +63,21 @@ function App() {
             </Typography>
           </Grid>
         </Grid>
-        <Form onAddItems={handleAddItems} />
-        <TodoList
-          items={items}
-          onClearList={handleClearList}
-          onDeleteItem={handleDeleteItem}
-          onToggleItem={handleToggleItem}
-        />
+        <Grid container spacing={0} direction='column' alignItems='center'>
+          <Grid item sx={{ width: '400px' }}>
+            <Form onAddItems={handleAddItems} />
+          </Grid>
+          <Grid item alignSelf='flex-start'>
+            <TodoList
+              items={items}
+              onClearList={handleClearList}
+              onDeleteItem={handleDeleteItem}
+              onToggleItem={handleToggleItem}
+            />
+          </Grid>
+        </Grid>
       </Paper>
-    </Container>
+    </>
   )
 }
 
