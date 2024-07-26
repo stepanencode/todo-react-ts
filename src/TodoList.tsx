@@ -37,7 +37,11 @@ export default function TodoList({
       <Button
         onClick={onClearList}
         variant='contained'
-        sx={{ marginLeft: '25px' }}
+        sx={{
+          marginLeft: '25px',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+        }}
       >
         Clear list
         <DeleteOutlineIcon />

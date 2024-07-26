@@ -40,7 +40,7 @@ export default function Item({
       /> */}
       <Typography
         component='p'
-        sx={{ color: '#1976d2', maxWidth: '300px', wordBreak: 'break-all' }}
+        sx={{ maxWidth: '300px', wordBreak: 'break-all' }}
       >
         {item.text}
       </Typography>

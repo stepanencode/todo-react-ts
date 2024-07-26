@@ -56,11 +56,19 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
             placeholder='new todo item'
             value={text}
             onChange={handleChange}
-            sx={{ width: '300px' }}
+            sx={{
+              width: '300px',
+              bgcolor: 'background.default',
+              color: 'text.primary',
+            }}
           />
         </Grid>
         <Grid item>
-          <Button onClick={handleClick} variant='contained'>
+          <Button
+            onClick={handleClick}
+            variant='contained'
+            sx={{ bgcolor: 'background.default', color: 'text.primary' }}
+          >
             <AddIcon />
           </Button>
         </Grid>

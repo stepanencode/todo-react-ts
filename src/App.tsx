@@ -1,8 +1,14 @@
 import Form from './Form'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import TodoList from './TodoList'
 import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
 import { Grid, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { ColorModeContext } from './Theme'
 
 interface TodoItem {
   text: string
@@ -11,6 +17,8 @@ interface TodoItem {
 }
 
 function App() {
+  const theme = useTheme()
+  const colorMode = useContext(ColorModeContext)
   const [items, setItems] = useState<TodoItem[]>([])
 
   function handleAddItems(item: {
@@ -38,16 +46,35 @@ function App() {
     setItems([])
   }
   return (
-    <>
+    <Box
+      sx={{
+        height: '100vh',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: 'background.default',
+        color: 'text.primary',
+      }}
+    >
+      {theme.palette.mode} mode
+      <IconButton
+        sx={{ ml: 1 }}
+        onClick={colorMode.toggleColorMode}
+        color='inherit'
+      >
+        {theme.palette.mode === 'dark' ? (
+          <Brightness7Icon />
+        ) : (
+          <Brightness4Icon />
+        )}
+      </IconButton>
       <Paper
         elevation={12}
         sx={{
           width: '500px',
-          minHeight: '450px',
           padding: '25px',
           margin: '0 auto',
           marginTop: '50px',
-          bgcolor: '#e0f2fb',
+          bgcolor: 'background.default',
         }}
       >
         <Grid
@@ -58,7 +85,7 @@ function App() {
           sx={{ marginBottom: '25px' }}
         >
           <Grid item>
-            <Typography variant='h2' sx={{ color: '#1976d2' }}>
+            <Typography variant='h2' sx={{ color: 'black' }}>
               TODO LIST
             </Typography>
           </Grid>
@@ -77,7 +104,7 @@ function App() {
           </Grid>
         </Grid>
       </Paper>
-    </>
+    </Box>
   )
 }
 
