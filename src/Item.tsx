@@ -3,21 +3,13 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { Checkbox, Typography } from '@mui/material'
 import { TodoItem } from './types'
 
-interface Delete {
-  (id: number): void
-}
-
-// interface IsChecked {
-//   (id: number): void
-// }
-
 export default function Item({
   item,
   onChange,
-  onDeleteItem,
+  onClick,
 }: {
   item: TodoItem
-  onDeleteItem: Delete
+  onClick: (newItem: TodoItem) => void
   onChange: (newItem: TodoItem) => void
 }) {
   function handleToggleItem(
@@ -28,6 +20,16 @@ export default function Item({
     onChange({
       ...item,
       isChecked: checked,
+    })
+  }
+
+  function handleDeleteItem(
+    e: React.MouseEventHandler<HTMLAnchorElement>,
+    id: number
+  ) {
+    onClick({
+      ...item,
+      id: id,
     })
   }
   return (
@@ -43,7 +45,7 @@ export default function Item({
       >
         {item.text}
       </Typography>
-      <ClearIcon onClick={() => onDeleteItem(item.id)} sx={{ color: 'red' }} />
+      <ClearIcon onClick={handleDeleteItem} sx={{ color: 'red' }} />
     </ListItem>
   )
 }
