@@ -1,43 +1,42 @@
 import ListItem from '@mui/material/ListItem'
 import ClearIcon from '@mui/icons-material/Clear'
 import { Checkbox, Typography } from '@mui/material'
+import { TodoItem } from './types'
 
 interface Delete {
   (id: number): void
 }
 
-interface IsChecked {
-  (id: number): void
-}
-
-function stringToBoolean(convertItem: boolean): string {
-  return convertItem.toString()
-}
+// interface IsChecked {
+//   (id: number): void
+// }
 
 export default function Item({
   item,
+  onChange,
   onDeleteItem,
-  onToggleItem,
 }: {
-  item: { text: string; isChecked: boolean; id: number }
+  item: TodoItem
   onDeleteItem: Delete
-  onToggleItem: IsChecked
+  onChange: (newItem: TodoItem) => void
 }) {
-  let convertItem = stringToBoolean(item.isChecked)
-
+  function handleToggleItem(
+    e: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) {
+    e.preventDefault()
+    onChange({
+      ...item,
+      isChecked: checked,
+    })
+  }
   return (
     <ListItem>
       <Checkbox
-        onChange={() => onToggleItem(item.id)}
+        onChange={handleToggleItem}
         inputProps={{ 'aria-label': 'controlled' }}
-        value={convertItem}
+        checked={item.isChecked}
       />
-      {/* input checkbox doesn't connect with state with mui  */}
-      {/* <input
-        type='checkbox'
-        value={convertItem}
-        onChange={() => onToggleItem(item.id)}
-      /> */}
       <Typography
         component='p'
         sx={{ maxWidth: '300px', wordBreak: 'break-all' }}

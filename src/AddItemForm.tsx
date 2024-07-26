@@ -3,12 +3,13 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import AddIcon from '@mui/icons-material/Add'
 import { Grid } from '@mui/material'
+import { TodoItem } from './types'
 
 interface AddItem {
-  (newItem: { text: string; isChecked: boolean; id: number }): void
+  (newItem: TodoItem): void
 }
 
-export default function Form({ onAddItems }: { onAddItems: AddItem }) {
+export default function AddItemForm({ onAddItems }: { onAddItems: AddItem }) {
   const [text, setText] = useState<string>('')
 
   const newItem = { text, isChecked: false, id: Date.now() }
@@ -26,17 +27,10 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
     console.log(newItem)
   }
 
-  function handleClick() {
-    if (!text) return
-    onAddItems(newItem)
-    setText('')
-  }
-
   return (
     <>
       <Grid
         container
-        // spacing={2}
         alignItems='center'
         direction='row'
         justifyContent='space-between'
@@ -65,7 +59,7 @@ export default function Form({ onAddItems }: { onAddItems: AddItem }) {
         </Grid>
         <Grid item>
           <Button
-            onClick={handleClick}
+            type='submit'
             variant='contained'
             sx={{ bgcolor: 'background.default', color: 'text.primary' }}
           >

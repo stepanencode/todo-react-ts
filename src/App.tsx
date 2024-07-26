@@ -1,4 +1,4 @@
-import Form from './Form'
+import AddItemForm from './AddItemForm'
 import { useState, useContext } from 'react'
 import TodoList from './TodoList'
 import Paper from '@mui/material/Paper'
@@ -9,23 +9,14 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 import { Grid, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { ColorModeContext } from './Theme'
-
-interface TodoItem {
-  text: string
-  isChecked: boolean
-  id: number
-}
+import { TodoItem } from './types'
 
 function App() {
   const theme = useTheme()
   const colorMode = useContext(ColorModeContext)
   const [items, setItems] = useState<TodoItem[]>([])
 
-  function handleAddItems(item: {
-    text: string
-    isChecked: boolean
-    id: number
-  }) {
+  function handleAddItems(item: TodoItem) {
     setItems((items) => [...items, item])
     console.log(items)
   }
@@ -34,11 +25,9 @@ function App() {
     setItems((items) => items.filter((item) => item.id !== id))
   }
 
-  function handleToggleItem(id: number) {
+  function handleChange(newItem: TodoItem) {
     setItems((items) =>
-      items.map((item) =>
-        item.id === id ? { ...item, isChecked: !item.isChecked } : item
-      )
+      items.map((item) => (item.id === newItem.id ? newItem : item))
     )
   }
 
@@ -92,14 +81,14 @@ function App() {
         </Grid>
         <Grid container spacing={0} direction='column' alignItems='center'>
           <Grid item sx={{ width: '400px' }}>
-            <Form onAddItems={handleAddItems} />
+            <AddItemForm onAddItems={handleAddItems} />
           </Grid>
           <Grid item alignSelf='flex-start'>
             <TodoList
               items={items}
               onClearList={handleClearList}
               onDeleteItem={handleDeleteItem}
-              onToggleItem={handleToggleItem}
+              onChange={handleChange}
             />
           </Grid>
         </Grid>
