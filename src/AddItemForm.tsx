@@ -61,7 +61,7 @@ export default function AddItemForm({ onAddItems }: { onAddItems: AddItem }) {
           <Button
             type='submit'
             variant='contained'
-            sx={{ bgcolor: 'background.default', color: 'text.primary' }}
+            // sx={{ bgcolor: 'background.default', color: 'text.primary' }}
           >
             <AddIcon />
           </Button>

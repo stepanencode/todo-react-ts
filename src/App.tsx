@@ -74,9 +74,7 @@ function App() {
           sx={{ marginBottom: '25px' }}
         >
           <Grid item>
-            <Typography variant='h2' sx={{ color: 'black' }}>
-              TODO LIST
-            </Typography>
+            <Typography variant='h2'>TODO LIST</Typography>
           </Grid>
         </Grid>
         <Grid container spacing={0} direction='column' alignItems='center'>

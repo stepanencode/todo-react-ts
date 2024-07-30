@@ -32,7 +32,6 @@ export default function TodoList({
       <Button
         onClick={onClearList}
         variant='contained'
-        // color='ochre'
         sx={{
           marginLeft: '25px',
         }}
