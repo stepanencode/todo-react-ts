@@ -4,21 +4,17 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import List from '@mui/material/List'
 import { TodoItem } from './types'
 
-interface Delete {
-  (id: number): void
-}
-
 interface Props {
   items: TodoItem[]
   onClearList: React.MouseEventHandler<HTMLButtonElement>
-  onDeleteItem: Delete
+  onDelete: (id: number) => void
   onChange: (newItem: TodoItem) => void
 }
 
 export default function TodoList({
   items,
   onClearList,
-  onDeleteItem,
+  onDelete,
   onChange,
 }: Props) {
   return (
@@ -28,7 +24,7 @@ export default function TodoList({
           <Item
             item={item}
             key={item.id}
-            onDeleteItem={onDeleteItem}
+            onDelete={onDelete}
             onChange={onChange}
           />
         ))}
@@ -36,10 +32,9 @@ export default function TodoList({
       <Button
         onClick={onClearList}
         variant='contained'
+        // color='ochre'
         sx={{
           marginLeft: '25px',
-          bgcolor: 'background.default',
-          color: 'text.primary',
         }}
       >
         Clear list

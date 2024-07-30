@@ -6,10 +6,10 @@ import { TodoItem } from './types'
 export default function Item({
   item,
   onChange,
-  onClick,
+  onDelete,
 }: {
   item: TodoItem
-  onClick: (newItem: TodoItem) => void
+  onDelete: (id: number) => void
   onChange: (newItem: TodoItem) => void
 }) {
   function handleToggleItem(
@@ -23,15 +23,6 @@ export default function Item({
     })
   }
 
-  function handleDeleteItem(
-    e: React.MouseEventHandler<HTMLAnchorElement>,
-    id: number
-  ) {
-    onClick({
-      ...item,
-      id: id,
-    })
-  }
   return (
     <ListItem>
       <Checkbox
@@ -45,7 +36,7 @@ export default function Item({
       >
         {item.text}
       </Typography>
-      <ClearIcon onClick={handleDeleteItem} sx={{ color: 'red' }} />
+      <ClearIcon onClick={() => onDelete(item.id)} sx={{ color: 'red' }} />
     </ListItem>
   )
 }

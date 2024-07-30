@@ -87,7 +87,7 @@ function App() {
             <TodoList
               items={items}
               onClearList={handleClearList}
-              onDeleteItem={handleDeleteItem}
+              onDelete={handleDeleteItem}
               onChange={handleChange}
             />
           </Grid>
