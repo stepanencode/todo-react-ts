@@ -52,17 +52,11 @@ export default function AddItemForm({ onAddItems }: { onAddItems: AddItem }) {
             onChange={handleChange}
             sx={{
               width: '300px',
-              bgcolor: 'background.default',
-              color: 'text.primary',
             }}
           />
         </Grid>
         <Grid item>
-          <Button
-            type='submit'
-            variant='contained'
-            // sx={{ bgcolor: 'background.default', color: 'text.primary' }}
-          >
+          <Button type='submit' variant='contained'>
             <AddIcon />
           </Button>
         </Grid>
