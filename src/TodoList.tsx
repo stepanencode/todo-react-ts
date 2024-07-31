@@ -19,7 +19,11 @@ export default function TodoList({
 }: Props) {
   return (
     <div>
-      <List>
+      <List
+        sx={{
+          marginLeft: '8px',
+        }}
+      >
         {items.map((item) => (
           <Item
             item={item}

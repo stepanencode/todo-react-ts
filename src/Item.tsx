@@ -1,6 +1,6 @@
 import ListItem from '@mui/material/ListItem'
 import ClearIcon from '@mui/icons-material/Clear'
-import { Checkbox, Typography } from '@mui/material'
+import { Button, Checkbox, FormControlLabel } from '@mui/material'
 import { TodoItem } from './types'
 
 export default function Item({
@@ -13,30 +13,31 @@ export default function Item({
   onChange: (newItem: TodoItem) => void
 }) {
   function handleToggleItem(
-    e: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
   ) {
-    e.preventDefault()
     onChange({
       ...item,
       isChecked: checked,
     })
+    console.log(item) // почему показывает неверное значение isChecked
   }
 
   return (
     <ListItem>
-      <Checkbox
-        onChange={handleToggleItem}
-        inputProps={{ 'aria-label': 'controlled' }}
-        checked={item.isChecked}
+      <FormControlLabel
+        control={
+          <Checkbox
+            onChange={handleToggleItem}
+            inputProps={{ 'aria-label': 'controlled' }}
+            checked={item.isChecked}
+          />
+        }
+        label={item.text}
       />
-      <Typography
-        component='p'
-        sx={{ maxWidth: '300px', wordBreak: 'break-all' }}
-      >
-        {item.text}
-      </Typography>
-      <ClearIcon onClick={() => onDelete(item.id)} sx={{ color: 'red' }} />
+      <Button className='hidden-button'>
+        <ClearIcon onClick={() => onDelete(item.id)} sx={{ color: 'red' }} />
+      </Button>
     </ListItem>
   )
 }

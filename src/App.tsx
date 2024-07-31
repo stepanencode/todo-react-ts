@@ -29,6 +29,7 @@ function App() {
     setItems((items) =>
       items.map((item) => (item.id === newItem.id ? newItem : item))
     )
+    // console.log(items) неверное значение поля isChecked
   }
 
   function handleClearList() {
